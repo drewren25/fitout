@@ -1,0 +1,51 @@
+.body{
+    margin: 32px 0;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+
+}
+
+.narrow-body{
+    width: 75%;
+    margin: auto;
+}
+
+.content{
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    margin-top: 5rem;
+}
+
+.about-section img{
+    width: 33%;
+    height: auto;
+    border-radius: 16px;
+}
+
+.about-section{
+    margin-top: 100px;
+}
+
+.name{
+    font-family: primary;
+    font-size: 64px;
+    color: var(--primary-color)
+}
+
+.Andrew, .Karin{
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    margin-top: 5rem;
+}
+
+.Andrew img, .Karin img{
+    height: 446px;
+    object-fit: cover;
+}
+
+.about-section>h1{
+    text-align: center;
+}

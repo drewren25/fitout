@@ -1,0 +1,80 @@
+@font-face{
+    font-family: primary;
+    src: url("C:\Users\drewr\OneDrive\Desktop\fitout\react-app\src\assets\Righteous\Righteous-Regular.ttf")
+}
+
+:root {
+    --primary-color: #4340CF;
+    --primary-70: #7B79DE;
+    --primary-50: #A19FE7;
+    --primary-30: #C7C6F1;
+    --primary-10: #ECECFA;
+}
+
+body{
+    margin-top: 98px;
+}
+
+h2{
+    font-size: 24px;
+    font-weight: 400;
+}
+
+h3{
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.btn-primary, .btn-outline-primary{
+    --bs-btn-border-color: var(--primary-color);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #3533a5;
+    --bs-btn-hover-border-color: #3533a5;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #3533a5;
+    --bs-btn-active-border-color: #3533a5;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-border-color: #A19FE7;
+}
+
+.btn-primary{
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--primary-color);
+    --bs-btn-disabled-bg: #A19FE7;
+}
+
+.btn-outline-primary{
+    --bs-btn-color: var(--primary-color);
+    --bs-btn-bg: transparent;
+    --bs-btn-disabled-bg: transparent;
+}
+
+a{
+    text-decoration: none;
+}
+
+p{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.light{
+    font-weight: lighter;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.btn{
+    width: 45%;
+}
+
+.real-big{
+    font-size: 80px;
+}
+
+.real-big::before{
+    content: "\00a0";
+}

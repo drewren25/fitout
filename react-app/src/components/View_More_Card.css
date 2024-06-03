@@ -1,0 +1,14 @@
+.view-more{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.view-more>a>h1{
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.bi-arrow-right-short{
+    color: var(--primary-color);
+}

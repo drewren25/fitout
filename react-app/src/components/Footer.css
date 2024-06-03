@@ -1,0 +1,17 @@
+.footer-nav{
+    justify-content: center;
+}
+
+.footer-nav>div>a{
+    color: var(--primary-color);
+    font-weight: 500;
+    margin: 0 auto;
+}
+
+.footer{
+    margin-top: 10em;
+}
+
+.bi-instagram{
+    color: var(--primary-color);
+}

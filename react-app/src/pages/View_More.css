@@ -1,0 +1,31 @@
+.short-banner{
+    width: 100%;
+    height: 440px;
+}
+
+.short-banner>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 35%;
+    filter: brightness(50%);
+}
+
+.overlay-text{
+    position: absolute;
+    top: 300px;
+    left: 5%;
+    color: white;
+}
+
+.pagination{
+    padding-top: 56px;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-link{
+    color: black;
+    border-radius: 20% !important;
+}

@@ -1,0 +1,35 @@
+.custom-card-group .card {
+    margin: 0 10px 0 0; /* Adjust the value as needed */
+    border-color: white;
+    border-radius: 8px !important;
+    border-left: 1px white solid;
+}
+
+.custom-card-group{
+    width: 100%;
+}
+  
+@media (max-width: 576px) {
+    .custom-card-group {
+        flex-direction: column;
+    }
+
+    .custom-card-group .card {
+        margin: 10px 0; /* Add vertical space for smaller screens */
+    }
+}
+
+.card-img-top{
+    border-top-left-radius: 8px !important;
+    border-top-right-radius: 8px !important;
+}
+
+.card-body{
+    align-items: center;
+    justify-content: center;
+}
+
+.button-group{
+    display: flex;
+    justify-content: space-between;
+}

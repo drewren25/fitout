@@ -1,0 +1,11 @@
+.custom-card-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* This adds space between cards in modern browsers */
+    margin: auto;
+    margin-top: 24px;
+}
+
+.events{
+    margin: 64px 32px 32px 32px;
+}
