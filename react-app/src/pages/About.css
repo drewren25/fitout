@@ -49,3 +49,17 @@
 .about-section>h1{
     text-align: center;
 }
+
+.about-section p{
+    color: #666666;
+}
+
+.boxed{
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 16px;
+}
+
+.about-section h2{
+    color: var(--primary-70);
+}
