@@ -35,8 +35,41 @@ export default class About extends Component {
                   design. One thing that didn’t change, though, was our passion
                   for fitness. I dove deeper and deeper into it, familiarizing
                   myself with powerlifting and the opportunity it was providing
-                  for technological upgrades. March 2024 came along, and so our
-                  roundabout journey began
+                  for impact. March 2024 came along, and so our roundabout
+                  journey began
+                </p>
+              </div>
+            </div>
+            <div className="about-section boxed">
+              <h1>The Goal</h1>
+              <div className="content">
+                <p>
+                  Our overarching goal is to help you connect with fitness.
+                  Right now that means powerlifting meets, but the goal as we
+                  grow is to expand to fitness in a greater context. That means
+                  your next marathon, bodybuilding show, weightlifting
+                  competition, etc. As we continue to develop the platform, we
+                  also want to open up to non-competition events. Things like
+                  run club meet ups, group workouts, and the like. Not only do
+                  we want to help you find events to attend, but potential
+                  fitness spaces you might be interested in or may not even know
+                  about!
+                  <br />
+                  <br />
+                  We also have a goal for you on the individual level because,
+                  well, that’s something we care about: The individual. We love
+                  fitness at large, but we want it to mean something to you too
+                  and that’s a big reason we called this platform Fitout. To us,
+                  fitting out means to genuinely represent yourself in your own
+                  unique way through fitness. Not to try and blend in to the
+                  crowd and feel like you have to do things a certain way
+                  because that’s just how everyone does it. That being said, we
+                  don’t want to push the message of rule breaking or disrespect,
+                  there are certain things that everyone does just because
+                  that’s the right thing to do. Do those things, but we want to
+                  see you be 100% you in the gym, the pool, the track, wherever
+                  fitness takes place for you. We think that the world can use a
+                  whole lot more of just you.
                 </p>
               </div>
             </div>
@@ -69,42 +102,6 @@ export default class About extends Component {
                   <h2>I Like...</h2>
                   <p>Samoyeds, Star Wars</p>
                 </div>
-              </div>
-            </div>
-            <div className="about-section">
-              <h1>The Goal</h1>
-              <div className="content">
-                <img src={pic1} alt="" />
-                <span>
-                  Our overarching goal is to{" "}
-                  <span className="bold">help you connect with fitness</span>.
-                  Right now that means powerlifting meets, but the goal as we
-                  grow is to expand to fitness in a greater context. That means
-                  your next marathon, bodybuilding show, weightlifting
-                  competition, etc. As we continue to develop the platform, we
-                  also want to open up to non-competition events. Things like
-                  run club meet ups, group workouts, and the like. Not only do
-                  we want to help you find events to attend, but potential
-                  fitness spaces you might be interested in or may not even know
-                  about!
-                  <br />
-                  <br />
-                  We also have a goal for you on the individual level because,
-                  well, that’s something we care about:
-                  <span className="bold"> The individual.</span> We love fitness
-                  at large, but we want it to mean something to you too and
-                  that’s a big reason we called this platform Fitout. To us,
-                  fitting out means to genuinely represent yourself in your own
-                  unique way through fitness. Not to try and blend in to the
-                  crowd and feel like you have to do things a certain way
-                  because that’s just how everyone does it. That being said, we
-                  don’t want to push the message of rule breaking or disrespect,
-                  there are certain things that everyone does just because
-                  that’s the right thing to do. Do those things, but we want to
-                  see you be 100% you in the gym, the pool, the track, wherever
-                  fitness takes place for you. We think that the world can use a
-                  whole lot more of <span className="bold">just you.</span>
-                </span>
               </div>
             </div>
           </div>
