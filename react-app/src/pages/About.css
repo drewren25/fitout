@@ -54,12 +54,18 @@
     color: #666666;
 }
 
+.about-section h2{
+    color: var(--primary-70);
+}
+
 .boxed{
     background-color: var(--primary-color);
     color: white;
     border-radius: 16px;
+    padding: 80px 24px;
+    display: block;
 }
 
-.about-section h2{
-    color: var(--primary-70);
+.boxed p, .boxed h2{
+    color: white;
 }
