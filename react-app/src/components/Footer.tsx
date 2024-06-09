@@ -15,18 +15,21 @@ function Footer() {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-      <div className="collapse navbar-collapse footer-nav" id="navbarNavAltMarkup">
+      <div
+        className="collapse navbar-collapse footer-nav"
+        id="navbarNavAltMarkup"
+      >
         <div className="navbar-nav">
-          <a className="nav-item nav-link" href="#">
+          <a className="nav-item nav-link" href="mailto:fitout.main@gmail.com">
             Contact
           </a>
           <a className="nav-item nav-link" href="#">
             FAQ
           </a>
-          <a className="nav-item nav-link" href="#">
+          <a className="nav-item nav-link" href="/How_it_works">
             How it works
           </a>
-          <a className="nav-item nav-link" href="#">
+          <a className="nav-item nav-link" href="/About">
             About
           </a>
         </div>

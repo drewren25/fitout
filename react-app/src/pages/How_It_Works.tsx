@@ -1,4 +1,4 @@
-function Create_A_Meet() {
+function How_It_Works() {
   return (
     <div>
       <p>
@@ -33,4 +33,4 @@ function Create_A_Meet() {
   );
 }
 
-export default Create_A_Meet;
+export default How_It_Works;
