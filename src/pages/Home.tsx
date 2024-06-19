@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Card from "../components/Card";
-import CardList from "../components/Card_List";
+import TestCard from "../components/TestCard";
 import Banner from "../components/Banner";
 import View_More_Card from "../components/View_More_Card";
 import Search from "../components/Search";
@@ -46,6 +46,8 @@ function Home() {
     },
   ];
 
+  //search function
+
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredEvents, setFilteredEvents] = useState(testData);
 
@@ -63,6 +65,19 @@ function Home() {
     setFilteredEvents(filtered);
   };
 
+  //dynamic data
+
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:5000/events")
+      .then((response) => response.json())
+      .then((data) => setEvents(data))
+      .catch((error) => console.error("Error fetching events:", error));
+  }, []);
+
+  //Home page render
+
   return (
     <>
       <Banner />
@@ -79,6 +94,11 @@ function Home() {
               key={data.id}
             />
           ))}
+          {events.map((event, index) => (
+          <div className="col-md-4" key={index}>
+            <TestCard event={event} />
+          </div>
+        ))}
           <View_More_Card />
         </div>
       </div>
