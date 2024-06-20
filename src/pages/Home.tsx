@@ -26,7 +26,7 @@ function Home() {
     {
       title: "Card 2",
       date: "Saturday, 5/11/24",
-      time: "8:00m",
+      time: "8:00pm",
       location: "San Francisco",
       id: 2,
     },
@@ -95,10 +95,10 @@ function Home() {
             />
           ))}
           {events.map((event, index) => (
-          <div className="col-md-4" key={index}>
-            <TestCard event={event} />
-          </div>
-        ))}
+            <div className="col-md-4" key={index}>
+              <TestCard event={event} />
+            </div>
+          ))}
           <View_More_Card />
         </div>
       </div>

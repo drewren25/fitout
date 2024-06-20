@@ -1,6 +1,10 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 
 app = Flask(__name__)
@@ -10,7 +14,13 @@ CORS(app)
 
 
 @app.route('/events', methods=['GET'])
+
 def get_events():
+    options = Options()
+    options.add_argument('--headless')  # Run headless Chrome
+    options.add_argument('--disable-gpu')
+    options.add_argument('--no-sandbox')
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
     # URL of the site to scrape
     url = "https://liftingcast.com/"
     
