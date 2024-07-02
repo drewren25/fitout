@@ -1,65 +1,59 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
+from bs4 import BeautifulSoup
+import time
 from flask import Flask, jsonify
 from flask_cors import CORS
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
-from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 CORS(app)
 
-# (rest of the code remains the same)
-
-
-@app.route('/events', methods=['GET'])
-
-def get_events():
+def scrape_events():
     options = Options()
-    options.add_argument('--headless')  # Run headless Chrome
+    # Comment out headless mode for debugging
+    options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     options.add_argument('--no-sandbox')
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
-    # URL of the site to scrape
-    url = "https://liftingcast.com/"
-    
-    # Set up the Selenium WebDriver
-    driver = webdriver.Chrome()
-    
-    # Load the page
-    driver.get(url)
-    
-    # Wait for the page to load
-    driver.implicitly_wait(10)
-    
-    # Get the page source
-    page_source = driver.page_source
-    
-    # Parse the HTML content with BeautifulSoup
-    soup = BeautifulSoup(page_source, 'html.parser')
-    
-    # Find the tbody containing the event rows
-    tbody = soup.find('tbody')
-    
-    event_names = []
-    if tbody:
-        # Find all tr elements within the tbody
-        rows = tbody.find_all('tr')
-        
-        # Iterate through each row and extract the event names
-        for row in rows:
-            # Find the td containing the a tag
-            event_link = row.find('a')
-            if event_link:
-                # Extract the event name from the a tag
-                event_names.append(event_link.get_text())
-    
-    # Close the driver
-    driver.quit()
-    
-    # Return the event names as JSON
-    return jsonify(event_names)
+
+    try:
+        driver.get('https://liftingcast.com/')
+        print("Page title:", driver.title)  # Debug: Print page title
+
+        # Wait for the table rows to be present
+        wait = WebDriverWait(driver, 10)
+        rows = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'tbody tr')))
+        print("Rows found:", len(rows))  # Debug: Print the number of rows found
+
+        # Ensure the page is fully loaded
+        time.sleep(5)
+
+        # Parse the page source with BeautifulSoup
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
+        tbody = soup.find('tbody')
+        events = []
+
+        for row in tbody.find_all('tr'):
+            event_name = row.find('td').find('a').text.strip()
+            print("Event found:", event_name)  # Debug: Print each event name found
+            events.append(event_name)
+
+        return events
+    except Exception as e:
+        print(f"Error occurred during scraping: {e}")
+        return []
+    finally:
+        driver.quit()
+
+@app.route('/events', methods=['GET'])
+def get_events():
+    events = scrape_events()
+    return jsonify(events)
 
 if __name__ == '__main__':
     app.run(debug=True)

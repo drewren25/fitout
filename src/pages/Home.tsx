@@ -44,7 +44,25 @@ function Home() {
       location: "Las Vegas",
       id: 4,
     },
+    {
+      title: "Card 5",
+      date: "Saturday, 11/23/24",
+      time: "6:00am",
+      location: "Richmond",
+      id: 5,
+    },
   ];
+
+  //dynamic data
+
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:5000/events")
+      .then((response) => response.json())
+      .then((data) => setEvents(data))
+      .catch((error) => console.error("Error fetching events:", error));
+  }, []);
 
   //search function
 
@@ -65,17 +83,6 @@ function Home() {
     setFilteredEvents(filtered);
   };
 
-  //dynamic data
-
-  const [events, setEvents] = useState([]);
-
-  useEffect(() => {
-    fetch("http://127.0.0.1:5000/events")
-      .then((response) => response.json())
-      .then((data) => setEvents(data))
-      .catch((error) => console.error("Error fetching events:", error));
-  }, []);
-
   //Home page render
 
   return (
@@ -94,12 +101,12 @@ function Home() {
               key={data.id}
             />
           ))}
-          {events.map((event, index) => (
-            <div className="col-md-4" key={index}>
-              <TestCard event={event} />
-            </div>
-          ))}
-          <View_More_Card />
+          <div className="custom-card-group">
+            {events.map((event, index) => (
+              <TestCard eventName={event} />
+            ))}
+            <View_More_Card />
+          </div>
         </div>
       </div>
     </>
