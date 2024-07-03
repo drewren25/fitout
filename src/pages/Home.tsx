@@ -101,12 +101,11 @@ function Home() {
               key={data.id}
             />
           ))}
-          <div className="custom-card-group">
-            {events.map((event, index) => (
-              <TestCard eventName={event} />
-            ))}
-            <View_More_Card />
-          </div>
+
+          {events.slice(0, 9).map((event, index) => (
+            <TestCard eventName={event} />
+          ))}
+          <View_More_Card />
         </div>
       </div>
     </>

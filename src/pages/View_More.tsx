@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
+import TestCard from "../components/TestCard";
 import Card from "../components/Card";
 import pic from "../assets/CMT09563.jpg";
 import Search from "../components/Search";
@@ -44,6 +45,17 @@ function View_More() {
     },
   ];
 
+  //dynamic data
+
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:5000/events")
+      .then((response) => response.json())
+      .then((data) => setEvents(data))
+      .catch((error) => console.error("Error fetching events:", error));
+  }, []);
+
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredEvents, setFilteredEvents] = useState(testData);
 
@@ -69,18 +81,14 @@ function View_More() {
       <div className="events">
         <Search searchTerm={searchTerm} handleSearch={handleSearch} />
         <div className="custom-card-group">
-          {filteredEvents.map((data) => (
-            <Card
-              title={data.title}
-              date={data.date}
-              time={data.time}
-              location={data.location}
-              id={data.id}
-              key={data.id}
-            />
+          {events.map((event, index) => (
+            <TestCard eventName={event} />
           ))}
         </div>
-        {/*<nav aria-label="Page navigation example">
+
+        {/*PAGINATION
+        
+        <nav aria-label="Page navigation example">
             <ul className="pagination">
               <li className="page-item">
                 <a className="page-link" href="#" aria-label="Previous">
