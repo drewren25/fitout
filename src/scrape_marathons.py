@@ -30,14 +30,21 @@ page_source = driver.page_source
 soup = BeautifulSoup(page_source, 'html.parser')
 
 # Find all spans with the itemprop "name"
-race_spans = soup.find_all('span', itemprop='name')
+race_name_spans = soup.find_all('span', itemprop='name')
 
-# Extract the text from each span and print it
-race_names = [span.get_text() for span in race_spans]
+# Find all spans with the itemprop "name"
+race_info_spans = soup.find_all('span', itemprop='addressLocality')
+
+# Extract the text from each name span and print it
+race_names = [span.get_text() for span in race_name_spans]
+
+# Extract the text from each info span and print it
+race_infos = [span.get_text() for span in race_info_spans]
 
 # Print the race names
-for race in race_names:
-    print(race)
+for index in range(len(race_names)):
+    print("Name: ", race_names[index])
+    print("Info: ", race_infos[index])
 
 # Close the driver
 driver.quit()
