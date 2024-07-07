@@ -1,50 +1,56 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
+import time
+from flask import Flask, jsonify
+from flask_cors import CORS
 
-# URL of the site to scrape
-url = "https://findmymarathon.com/calendar-all.php"
+app = Flask(__name__)
+CORS(app)
 
-# Set up the Selenium WebDriver with headless Chrome
-chrome_options = Options()
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--disable-gpu")
-chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--disable-dev-shm-usage")
+def scrape_marathons():
+    options = Options()
+    # Comment out headless mode for debugging
+    options.add_argument('--headless')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--no-sandbox')
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
 
-driver = webdriver.Chrome(options=chrome_options)
+    try:
+        driver.get("https://findmymarathon.com/calendar-all.php")
+        print("Page title:", driver.title)  # Debug: Print page title
 
-# Set up the Selenium WebDriver (make sure to have the appropriate WebDriver installed, e.g., ChromeDriver)
-driver = webdriver.Chrome()
+        # Ensure the page is fully loaded
+        time.sleep(5)
 
-# Load the page
-driver.get(url)
+        # Parse the page source with BeautifulSoup
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
+        race_name_spans = soup.find_all('span', itemprop='name')
+        events = []
 
-# Wait for the page to load (you may need to add more sophisticated waits)
-driver.implicitly_wait(10)
+        # Extract the text from each name span and print it
+        race_names = [span.get_text() for span in race_name_spans]
 
-# Get the page source
-page_source = driver.page_source
+        for race_name in race_names:
+            print("Event found:", race_name)  # Debug: Print each event name found
+            events.append(race_name)
 
-# Parse the HTML content with BeautifulSoup
-soup = BeautifulSoup(page_source, 'html.parser')
+        return events
+    except Exception as e:
+        print(f"Error occurred during scraping: {e}")
+        return []
+    finally:
+        driver.quit()
 
-# Find all spans with the itemprop "name"
-race_name_spans = soup.find_all('span', itemprop='name')
+@app.route('/marathons', methods=['GET'])
+def get_events():
+    races = scrape_marathons()
+    return jsonify(races)
 
-# Find all spans with the itemprop "name"
-race_info_spans = soup.find_all('span', itemprop='addressLocality')
-
-# Extract the text from each name span and print it
-race_names = [span.get_text() for span in race_name_spans]
-
-# Extract the text from each info span and print it
-race_infos = [span.get_text() for span in race_info_spans]
-
-# Print the race names
-for index in range(len(race_names)):
-    print("Name: ", race_names[index])
-    print("Info: ", race_infos[index])
-
-# Close the driver
-driver.quit()
+if __name__ == '__main__':
+    app.run(port=5001, debug=True)

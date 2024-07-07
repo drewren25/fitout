@@ -53,14 +53,22 @@ function Home() {
     },
   ];
 
-  //dynamic data
-
   const [events, setEvents] = useState([]);
+  const [marathons, setMarathons] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/events")
+    //dynamic data liftingcast
+
+    fetch("http://127.0.0.1:5002/events")
       .then((response) => response.json())
       .then((data) => setEvents(data))
+      .catch((error) => console.error("Error fetching events:", error));
+
+    //dynamic data marathons
+
+    fetch("http://127.0.0.1:5001/marathons")
+      .then((response) => response.json())
+      .then((data) => setMarathons(data))
       .catch((error) => console.error("Error fetching events:", error));
   }, []);
 
@@ -90,7 +98,9 @@ function Home() {
       <Banner />
       <div className="events">
         <Search searchTerm={searchTerm} handleSearch={handleSearch} />
+        <h1>Meets</h1>
         <div className="custom-card-group">
+          {/*
           {filteredEvents.map((data) => (
             <Card
               title={data.title}
@@ -101,9 +111,17 @@ function Home() {
               key={data.id}
             />
           ))}
-
+          */}
           {events.slice(0, 9).map((event, index) => (
             <TestCard eventName={event} />
+          ))}
+          <View_More_Card />
+        </div>
+        <Search searchTerm={searchTerm} handleSearch={handleSearch} />
+        <h1>Races</h1>
+        <div className="custom-card-group">
+          {marathons.slice(0, 9).map((marathon, index) => (
+            <TestCard eventName={marathon} />
           ))}
           <View_More_Card />
         </div>
