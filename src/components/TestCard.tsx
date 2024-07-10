@@ -1,11 +1,11 @@
 import React from "react";
 import logo from "../assets/download.png";
 
-interface TestInfo {
+interface eventData {
   eventName: string;
 }
 
-const TestCard: React.FC<TestInfo> = ({ eventName }) => {
+const TestCard: React.FC<eventData> = ({ eventName }) => {
   return (
 
       <div className="card">

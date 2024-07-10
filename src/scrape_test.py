@@ -23,7 +23,7 @@ def scrape_events():
 
     try:
         driver.get('https://liftingcast.com/')
-        print("Page title:", driver.title)  # Debug: Print page title
+        #print("Page title:", driver.title)  # Debug: Print page title
 
         # Wait for the table rows to be present
         wait = WebDriverWait(driver, 10)
@@ -40,7 +40,7 @@ def scrape_events():
 
         for row in tbody.find_all('tr'):
             event_name = row.find('td').find('a').text.strip()
-            print("Event found:", event_name)  # Debug: Print each event name found
+            #print("Event found:", event_name)  # Debug: Print each event name found
             events.append(event_name)
 
         return events
@@ -50,7 +50,7 @@ def scrape_events():
     finally:
         driver.quit()
 
-@app.route('/events', methods=['GET'])
+@app.route('/meets', methods=['GET'])
 def get_events():
     events = scrape_events()
     return jsonify(events)

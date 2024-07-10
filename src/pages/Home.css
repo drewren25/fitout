@@ -9,3 +9,9 @@
 .events{
     margin: 64px 32px 32px 32px;
 }
+
+.event-section-top{
+    display: flex;
+    align-items: center;
+    margin-top: 6em;
+}
