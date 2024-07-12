@@ -29,3 +29,10 @@
     color: black;
     border-radius: 20% !important;
 }
+
+.loading{
+    width: 100%;
+    text-align: center;
+    margin-top: 9em;
+    padding: auto;
+}

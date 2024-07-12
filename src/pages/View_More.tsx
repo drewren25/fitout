@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 import TestCard from "../components/TestCard";
-import Card from "../components/Card";
 import pic from "../assets/CMT09563.jpg";
 import Search from "../components/Search";
 
@@ -10,26 +9,27 @@ type Meet = {
 };
 
 function View_More() {
-  //dynamic data
-
-  const [meets, setMeets] = useState<Meet[]>([]);
+  // Dynamic data states
+  const [meets, setMeets] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredEvents, setFilteredEvents] = useState<Meet[]>(meets);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [filteredEvents, setFilteredEvents] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("http://127.0.0.1:5002/meets")
       .then((response) => response.json())
-      .then((data) => {
+      .then((data: string[]) => {
         setMeets(data);
         setFilteredEvents(data);
         setLoading(false);
       })
-      .catch((error) => console.error("Error fetching events:", error));
-    setLoading(false);
+      .catch((error) => {
+        console.error("Error fetching events:", error);
+        setLoading(false);
+      });
   }, []);
 
-  const handleSearch = (e: React.ChangeEvent<any>) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.toLowerCase();
     setSearchTerm(value);
 
@@ -40,7 +40,7 @@ function View_More() {
   };
 
   if (loading) {
-    return <div>Loading...</div>; // Show loading message while fetching data
+    return <div className="loading real-big">Loading...</div>; // Show loading message while fetching data
   }
 
   return (
@@ -53,8 +53,6 @@ function View_More() {
         <Search searchTerm={searchTerm} handleSearch={handleSearch} />
         <div className="custom-card-group">
           {filteredEvents.map((meet, index) => {
-            console.log("Current Meet:", meet);
-            console.log("Meet Type:", typeof meet);
             return <TestCard key={index} eventName={meet} />;
           })}
         </div>

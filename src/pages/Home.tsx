@@ -55,6 +55,7 @@ function Home() {
 
   const [meets, setMeets] = useState([]);
   const [marathons, setMarathons] = useState([]);
+  const [usapl, setUsapl] = useState([]);
 
   useEffect(() => {
     //dynamic data liftingcast
@@ -71,6 +72,13 @@ function Home() {
       .then((data) => setMarathons(data))
       .catch((error) => console.error("Error fetching events:", error));
   }, []);
+
+  //dynamic data usapl
+
+  fetch("http://127.0.0.1:5003/usapl")
+    .then((response) => response.json())
+    .then((data) => setMeets(data))
+    .catch((error) => console.error("Error fetching events:", error));
 
   //search function
 
@@ -115,7 +123,7 @@ function Home() {
           ))}
           */}
           {meets.slice(0, 9).map((meet, index) => (
-            <TestCard eventName={meet} />
+            <TestCard key={index} eventName={meet} />
           ))}
           <View_More_Card />
         </div>
@@ -125,7 +133,17 @@ function Home() {
         </div>
         <div className="custom-card-group">
           {marathons.slice(0, 9).map((marathon, index) => (
-            <TestCard eventName={marathon} />
+            <TestCard key={index} eventName={marathon} />
+          ))}
+          <View_More_Card />
+        </div>
+        <div className="event-section-top">
+          <h1>USAPL</h1>
+          <Search searchTerm={searchTerm} handleSearch={handleSearch} />
+        </div>
+        <div className="custom-card-group">
+          {usapl.slice(0, 9).map((event, index) => (
+            <TestCard key={index} eventName={event} />
           ))}
           <View_More_Card />
         </div>
