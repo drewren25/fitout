@@ -2,7 +2,7 @@
   "name": "react-app",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://drewren25.github.io/fitout",
+  "homepage": "https://drewren25.github.io/fitout/",
   "type": "module",
   "scripts": {
     "dev": "vite",
