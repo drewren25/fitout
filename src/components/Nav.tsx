@@ -1,4 +1,3 @@
-
 import Search from "./Search";
 
 function Nav() {
@@ -20,13 +19,13 @@ function Nav() {
       </button>
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
-          <a className="nav-item nav-link" href="/">
+          <a className="nav-item nav-link" href="#/">
             Home
           </a>
-          <a className="nav-item nav-link" href="/All_Meets">
+          <a className="nav-item nav-link" href="#/All_Meets">
             All Meets
           </a>
-          <a className="nav-item nav-link" href="/About">
+          <a className="nav-item nav-link" href="#/About">
             About
           </a>
         </div>

@@ -5,10 +5,10 @@ function View_More_Card() {
     <>
       <div className="card">
         <div className="card-body view-more">
-          <a href="/All_Meets">
+          <a href="#/All_Meets">
             <h1>View More</h1>
           </a>
-          <a href="/All_Meets">
+          <a href="#/All_Meets">
             <i className="bi bi-arrow-right-short fs-1"></i>
           </a>
         </div>
