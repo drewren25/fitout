@@ -3,7 +3,7 @@ import Search from "./Search";
 function Nav() {
   return (
     <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="/">
+      <a className="navbar-brand" href="#/">
         fitout
       </a>
       <button
