@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Create_A_Meet from "./pages/Create_A_Meet";
 import View_More from "./pages/View_More";
+import View_More_Races from "./pages/View_More_Races";
 import About from "./pages/About";
 import How_It_Works from "./pages/How_It_Works";
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/Create_A_Meet" element={<Create_A_Meet />} />
           <Route path="/All_Meets" element={<View_More />} />
+          <Route path="/All_Races" element={<View_More_Races />} />
           <Route path="/About" element={<About />} />
           <Route path="/How_it_works" element={<How_It_Works />} />
         </Routes>

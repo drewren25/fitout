@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import TestCard from "../components/TestCard";
 import Banner from "../components/Banner";
-import View_More_Card from "../components/View_More_Card";
 import Search from "../components/Search";
+
+import View_More_Card from "../components/View_More_Card";
+import View_More_Card_Races from "../components/View_More_Card_Races";
 
 interface EventInfo {
   title: string;
@@ -75,9 +77,9 @@ function Home() {
 
   //dynamic data usapl
 
-  fetch("http://127.0.0.1:5003/usapl")
+  fetch("http://127.0.0.1:3001/usapl")
     .then((response) => response.json())
-    .then((data) => setMeets(data))
+    .then((data) => setUsapl(data))
     .catch((error) => console.error("Error fetching events:", error));
 
   //search function
@@ -135,7 +137,7 @@ function Home() {
           {marathons.slice(0, 9).map((marathon, index) => (
             <TestCard key={index} eventName={marathon} />
           ))}
-          <View_More_Card />
+          <View_More_Card_Races />
         </div>
         <div className="event-section-top">
           <h1>USAPL</h1>

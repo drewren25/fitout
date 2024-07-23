@@ -15,12 +15,14 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "express": "^4.19.2",
+    "ncp": "^2.0.0",
+    "puppeteer": "^22.13.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.2",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.24.1",
-    "styled-components": "^6.1.11",
-    "ncp": "^2.0.0"
+    "styled-components": "^6.1.11"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
