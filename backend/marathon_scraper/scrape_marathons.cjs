@@ -5,18 +5,18 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 
-app.get('/usapl', async (req, res) => {
+app.get('/marathons', async (req, res) => {
   try {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto('https://www.usapowerlifting.com/calendar', { waitUntil: 'networkidle2', timeout: 60000 });
+    await page.goto('https://findmymarathon.com/calendar-all.php', { waitUntil: 'networkidle2', timeout: 60000 });
 
-    await page.waitForSelector('.event-name'); // Replace with actual selector for event items
+    await page.waitForSelector('[itemprop="name"]'); // Replace with actual selector for event items
 
     const events = await page.evaluate(() => {
-      const eventElements = document.querySelectorAll('.event-name'); // Replace with actual selector
+      const eventElements = document.querySelectorAll('[itemprop="name"]'); // Replace with actual selector
       return Array.from(eventElements).map(event => event.textContent.trim());
     });
 

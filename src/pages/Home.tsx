@@ -60,27 +60,20 @@ function Home() {
   const [usapl, setUsapl] = useState([]);
 
   useEffect(() => {
-    //dynamic data liftingcast
+    //dynamic data usapl
 
-    fetch("http://127.0.0.1:5002/meets")
+    fetch("http://127.0.0.1:3001/usapl")
       .then((response) => response.json())
-      .then((data) => setMeets(data))
+      .then((data) => setUsapl(data))
       .catch((error) => console.error("Error fetching events:", error));
 
     //dynamic data marathons
 
-    fetch("http://127.0.0.1:5001/marathons")
+    fetch("http://127.0.0.1:3002/marathons")
       .then((response) => response.json())
       .then((data) => setMarathons(data))
       .catch((error) => console.error("Error fetching events:", error));
   }, []);
-
-  //dynamic data usapl
-
-  fetch("http://127.0.0.1:3001/usapl")
-    .then((response) => response.json())
-    .then((data) => setUsapl(data))
-    .catch((error) => console.error("Error fetching events:", error));
 
   //search function
 
@@ -108,24 +101,12 @@ function Home() {
       <Banner />
       <div className="events">
         <div className="event-section-top">
-          <h1>Meets</h1>
+          <h1>USAPL</h1>
           <Search searchTerm={searchTerm} handleSearch={handleSearch} />
         </div>
         <div className="custom-card-group">
-          {/*
-          {filteredEvents.map((data) => (
-            <Card
-              title={data.title}
-              date={data.date}
-              time={data.time}
-              location={data.location}
-              id={data.id}
-              key={data.id}
-            />
-          ))}
-          */}
-          {meets.slice(0, 9).map((meet, index) => (
-            <TestCard key={index} eventName={meet} />
+          {usapl.slice(0, 9).map((event, index) => (
+            <TestCard key={index} eventName={event} />
           ))}
           <View_More_Card />
         </div>
@@ -138,16 +119,6 @@ function Home() {
             <TestCard key={index} eventName={marathon} />
           ))}
           <View_More_Card_Races />
-        </div>
-        <div className="event-section-top">
-          <h1>USAPL</h1>
-          <Search searchTerm={searchTerm} handleSearch={handleSearch} />
-        </div>
-        <div className="custom-card-group">
-          {usapl.slice(0, 9).map((event, index) => (
-            <TestCard key={index} eventName={event} />
-          ))}
-          <View_More_Card />
         </div>
       </div>
     </>

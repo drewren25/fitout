@@ -16,7 +16,7 @@ function View_More() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5002/meets")
+    fetch("http://127.0.0.1:3001/usapl")
       .then((response) => response.json())
       .then((data: string[]) => {
         setMeets(data);
@@ -40,7 +40,16 @@ function View_More() {
   };
 
   if (loading) {
-    return <div className="loading real-big">Loading...</div>; // Show loading message while fetching data
+    return (
+      <div>
+        <div className="short-banner">
+          <img src={pic} alt="" />
+          <h1 className="overlay-text real-big">Meets</h1>
+        </div>
+        <div className="loading real-big">Loading...</div>; // Show loading
+        message while fetching data
+      </div>
+    );
   }
 
   return (
