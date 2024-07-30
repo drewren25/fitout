@@ -1,27 +1,28 @@
 import React from "react";
-import logo from "../assets/download.png";
 
 interface eventData {
   eventName: string;
+  location: string;
+  pic: string;
 }
 
-const TestCard: React.FC<eventData> = ({ eventName }) => {
+const TestCard: React.FC<eventData> = ({ eventName, location, pic }) => {
   return (
-
-      <div className="card">
-        <img src={logo} className="card-img-top" />
-        <div className="card-body">
-          <h5 className="card-title">{eventName}</h5>
-          <div className="button-group">
-            <a href="#" className="btn btn-outline-primary">
-              Contact
-            </a>
-            <a href="#" className="btn btn-primary">
-              Register
-            </a>
-          </div>
+    <div className="card">
+      <img src={pic} className="card-img-top" />
+      <div className="card-body">
+        <h5 className="card-title">{eventName}</h5>
+        <p>{location}</p>
+        <div className="button-group">
+          <a href="#" className="btn btn-outline-primary">
+            Contact
+          </a>
+          <a href="#" className="btn btn-primary">
+            Register
+          </a>
         </div>
       </div>
+    </div>
   );
 };
 

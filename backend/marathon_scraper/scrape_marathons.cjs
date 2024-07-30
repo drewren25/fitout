@@ -13,16 +13,27 @@ app.get('/marathons', async (req, res) => {
     const page = await browser.newPage();
     await page.goto('https://findmymarathon.com/calendar-all.php', { waitUntil: 'networkidle2', timeout: 60000 });
 
-    await page.waitForSelector('[itemprop="name"]'); // Replace with actual selector for event items
+    await page.waitForSelector('[itemprop="name"]');
+    await page.waitForSelector('[itemprop="addressLocality"]');
 
     const events = await page.evaluate(() => {
-      const eventElements = document.querySelectorAll('[itemprop="name"]'); // Replace with actual selector
-      return Array.from(eventElements).map(event => event.textContent.trim());
+      const eventElements = document.querySelectorAll('[itemprop="name"]');
+      const locationElements = document.querySelectorAll('[itemprop="addressLocality"]');
+      
+      const eventList = [];
+      eventElements.forEach((event, index) => {
+        eventList.push({
+          name: event.textContent.trim(),
+          location: locationElements[index] ? locationElements[index].textContent.trim() : 'Location not found'
+        });
+      });
+      
+      return eventList;
     });
 
     await browser.close();
 
-    //console.log(events);
+    console.log(events);
     res.json(events);
   } catch (error) {
     console.error(error);

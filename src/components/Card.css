@@ -7,7 +7,6 @@
 
 .custom-card-group{
     width: 100%;
-    align-items: center;
     
 }
   
@@ -24,6 +23,8 @@
 .card-img-top{
     border-top-left-radius: 8px !important;
     border-top-right-radius: 8px !important;
+    height: 158px;
+    object-fit: contain;
 }
 
 .card-body{

@@ -8,12 +8,20 @@ import Search from "../components/Search";
 import View_More_Card from "../components/View_More_Card";
 import View_More_Card_Races from "../components/View_More_Card_Races";
 
+import logo from "../assets/download.png";
+import logo2 from "../assets/gettyimages-1143071628.webp";
+
 interface EventInfo {
   title: string;
   date: string;
   time: string;
   location: string;
   id: number;
+}
+
+interface Event{
+  name: string;
+  location: string;
 }
 
 function Home() {
@@ -55,8 +63,7 @@ function Home() {
     },
   ];
 
-  const [meets, setMeets] = useState([]);
-  const [marathons, setMarathons] = useState([]);
+  const [marathons, setMarathons] = useState<Event[]>([]);
   const [usapl, setUsapl] = useState([]);
 
   useEffect(() => {
@@ -106,7 +113,7 @@ function Home() {
         </div>
         <div className="custom-card-group">
           {usapl.slice(0, 9).map((event, index) => (
-            <TestCard key={index} eventName={event} />
+            <TestCard key={index} eventName={event} location={"thing"} pic={logo} />
           ))}
           <View_More_Card />
         </div>
@@ -116,7 +123,7 @@ function Home() {
         </div>
         <div className="custom-card-group">
           {marathons.slice(0, 9).map((marathon, index) => (
-            <TestCard key={index} eventName={marathon} />
+            <TestCard key={index} eventName={marathon.name} location={marathon.location} pic={logo2} />
           ))}
           <View_More_Card_Races />
         </div>
