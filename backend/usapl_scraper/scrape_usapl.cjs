@@ -13,16 +13,26 @@ app.get('/usapl', async (req, res) => {
     const page = await browser.newPage();
     await page.goto('https://www.usapowerlifting.com/calendar', { waitUntil: 'networkidle2', timeout: 60000 });
 
-    await page.waitForSelector('.event-name'); // Replace with actual selector for event items
+    await page.waitForSelector('.event-info'); // Update this selector to match your structure
 
     const events = await page.evaluate(() => {
-      const eventElements = document.querySelectorAll('.event-name'); // Replace with actual selector
-      return Array.from(eventElements).map(event => event.textContent.trim());
+      const eventElements = document.querySelectorAll('.event-info'); // Update this selector to match your structure
+      return Array.from(eventElements).map(event => {
+        const nameElement = event.querySelector('.event-name'); // Replace with actual selector for event name
+        const locationElement = Array.from(event.childNodes).find(node => node.nodeType === Node.TEXT_NODE && node.textContent.includes('Location:'));
+
+        let location = 'N/A';
+        if (locationElement) {
+          const textAfterLocation = locationElement.textContent.split('Location:')[1];
+          location = textAfterLocation ? textAfterLocation.split('<br>')[0].trim() : 'N/A';
+        }
+
+        return { eventName: nameElement ? nameElement.textContent.trim() : 'Unknown', location };
+      });
     });
 
     await browser.close();
 
-    //console.log(events);
     res.json(events);
   } catch (error) {
     console.error(error);

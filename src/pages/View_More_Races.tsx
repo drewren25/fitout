@@ -4,22 +4,23 @@ import TestCard from "../components/TestCard";
 import pic from "../assets/CMT09563.jpg";
 import Search from "../components/Search";
 
-type Meet = {
-  title: string;
-};
+interface Event {
+  name: string;
+  location: string;
+}
 
 function View_More() {
   // Dynamic data states
-  const [meets, setMeets] = useState<string[]>([]);
+  const [marathons, setMarathons] = useState<Event[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredEvents, setFilteredEvents] = useState<string[]>([]);
+  const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("http://127.0.0.1:5001/marathons")
       .then((response) => response.json())
-      .then((data: string[]) => {
-        setMeets(data);
+      .then((data: Event[]) => {
+        setMarathons(data);
         setFilteredEvents(data);
         setLoading(false);
       })
@@ -33,8 +34,8 @@ function View_More() {
     const value = e.target.value.toLowerCase();
     setSearchTerm(value);
 
-    const filtered = meets.filter((event) =>
-      event.toLowerCase().includes(value)
+    const filtered = marathons.filter((event) =>
+      event.name.toLowerCase().includes(value)
     );
     setFilteredEvents(filtered);
   };
@@ -52,8 +53,15 @@ function View_More() {
       <div className="events">
         <Search searchTerm={searchTerm} handleSearch={handleSearch} />
         <div className="custom-card-group">
-          {filteredEvents.map((meet, index) => {
-            return <TestCard key={index} eventName={meet} />;
+          {filteredEvents.map((race, index) => {
+            return (
+              <TestCard
+                key={index}
+                eventName={race.name}
+                location={race.location}
+                pic={pic}
+              />
+            );
           })}
         </div>
       </div>

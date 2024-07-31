@@ -62,7 +62,14 @@ function View_More() {
         <Search searchTerm={searchTerm} handleSearch={handleSearch} />
         <div className="custom-card-group">
           {filteredEvents.map((meet, index) => {
-            return <TestCard key={index} eventName={meet} />;
+            return (
+              <TestCard
+                key={index}
+                eventName={meet}
+                location={"thing"}
+                pic={pic}
+              />
+            );
           })}
         </div>
       </div>

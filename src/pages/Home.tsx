@@ -64,7 +64,7 @@ function Home() {
   ];
 
   const [marathons, setMarathons] = useState<Event[]>([]);
-  const [usapl, setUsapl] = useState([]);
+  const [usapl, setUsapl] = useState<Event[]>([]);
 
   useEffect(() => {
     //dynamic data usapl
@@ -113,7 +113,7 @@ function Home() {
         </div>
         <div className="custom-card-group">
           {usapl.slice(0, 9).map((event, index) => (
-            <TestCard key={index} eventName={event} location={"thing"} pic={logo} />
+            <TestCard key={index} eventName={event.name} location={event.location} pic={logo} />
           ))}
           <View_More_Card />
         </div>
