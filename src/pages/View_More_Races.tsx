@@ -1,72 +1,76 @@
 import React, { useEffect, useState } from "react";
 
 import TestCard from "../components/TestCard";
-import pic from "../assets/CMT09563.jpg";
 import Search from "../components/Search";
+
+import logo2 from "../assets/gettyimages-1143071628.webp";
+import pic from "../assets/CMT09563.jpg";
 
 interface Event {
   name: string;
   location: string;
+  registrationLink: string;
 }
 
-function View_More() {
-  // Dynamic data states
+function View_More_Races() {
   const [marathons, setMarathons] = useState<Event[]>([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
-  const [loading, setLoading] = useState(true);
+
+  const [searchTermMarathons, setSearchTermMarathons] = useState("");
+  const [filteredMarathonsEvents, setFilteredMarathonsEvents] =
+    useState(marathons);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5001/marathons")
+    fetch("http://127.0.0.1:3002/marathons")
       .then((response) => response.json())
-      .then((data: Event[]) => {
+      .then((data) => {
         setMarathons(data);
-        setFilteredEvents(data);
-        setLoading(false);
+        setFilteredMarathonsEvents(data);
       })
-      .catch((error) => {
-        console.error("Error fetching events:", error);
-        setLoading(false);
-      });
+      .catch((error) =>
+        console.error("Error fetching marathon events:", error)
+      );
   }, []);
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchMarathons = (e: React.ChangeEvent<any>) => {
     const value = e.target.value.toLowerCase();
-    setSearchTerm(value);
+    setSearchTermMarathons(value);
 
-    const filtered = marathons.filter((event) =>
-      event.name.toLowerCase().includes(value)
+    const filtered = marathons.filter(
+      (event) =>
+        event.name.toLowerCase().includes(value) ||
+        event.location.toLowerCase().includes(value)
     );
-    setFilteredEvents(filtered);
+    setFilteredMarathonsEvents(filtered);
   };
 
-  if (loading) {
-    return <div className="loading real-big">Loading...</div>; // Show loading message while fetching data
-  }
-
   return (
-    <div>
+    <>
       <div className="short-banner">
         <img src={pic} alt="" />
         <h1 className="overlay-text real-big">Races</h1>
       </div>
       <div className="events">
-        <Search searchTerm={searchTerm} handleSearch={handleSearch} />
+        <div className="event-section-top">
+          <h1>Races</h1>
+          <Search
+            searchTerm={searchTermMarathons}
+            handleSearch={handleSearchMarathons}
+          />
+        </div>
         <div className="custom-card-group">
-          {filteredEvents.map((race, index) => {
-            return (
-              <TestCard
-                key={index}
-                eventName={race.name}
-                location={race.location}
-                pic={pic}
-              />
-            );
-          })}
+          {filteredMarathonsEvents.map((marathon, index) => (
+            <TestCard
+              key={index}
+              eventName={marathon.name}
+              location={marathon.location}
+              pic={logo2}
+              registrationLink="https://findmymarathon.com/calendar-all.php"
+            />
+          ))}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
-export default View_More;
+export default View_More_Races;

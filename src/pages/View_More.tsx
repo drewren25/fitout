@@ -1,79 +1,72 @@
 import React, { useEffect, useState } from "react";
 
 import TestCard from "../components/TestCard";
-import pic from "../assets/CMT09563.jpg";
 import Search from "../components/Search";
 
-type Meet = {
-  title: string;
-};
+import logo from "../assets/download.png";
+import pic from "../assets/CMT09563.jpg";
+
+interface Event {
+  name: string;
+  location: string;
+  registrationLink: string;
+}
 
 function View_More() {
-  // Dynamic data states
-  const [meets, setMeets] = useState<string[]>([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredEvents, setFilteredEvents] = useState<string[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [usapl, setUsapl] = useState<Event[]>([]);
+
+  const [searchTermUsapl, setSearchTermUsapl] = useState("");
+  const [filteredUsaplEvents, setFilteredUsaplEvents] = useState(usapl);
 
   useEffect(() => {
     fetch("http://127.0.0.1:3001/usapl")
       .then((response) => response.json())
-      .then((data: string[]) => {
-        setMeets(data);
-        setFilteredEvents(data);
-        setLoading(false);
+      .then((data) => {
+        setUsapl(data);
+        setFilteredUsaplEvents(data);
       })
-      .catch((error) => {
-        console.error("Error fetching events:", error);
-        setLoading(false);
-      });
+      .catch((error) => console.error("Error fetching USAPL events:", error));
   }, []);
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchUsapl = (e: React.ChangeEvent<any>) => {
     const value = e.target.value.toLowerCase();
-    setSearchTerm(value);
+    setSearchTermUsapl(value);
 
-    const filtered = meets.filter((event) =>
-      event.toLowerCase().includes(value)
+    const filtered = usapl.filter(
+      (event) =>
+        event.name.toLowerCase().includes(value) ||
+        event.location.toLowerCase().includes(value)
     );
-    setFilteredEvents(filtered);
+    setFilteredUsaplEvents(filtered);
   };
 
-  if (loading) {
-    return (
-      <div>
-        <div className="short-banner">
-          <img src={pic} alt="" />
-          <h1 className="overlay-text real-big">Meets</h1>
-        </div>
-        <div className="loading real-big">Loading...</div>; // Show loading
-        message while fetching data
-      </div>
-    );
-  }
-
   return (
-    <div>
+    <>
       <div className="short-banner">
         <img src={pic} alt="" />
-        <h1 className="overlay-text real-big">Meets</h1>
+        <h1 className="overlay-text real-big">Races</h1>
       </div>
       <div className="events">
-        <Search searchTerm={searchTerm} handleSearch={handleSearch} />
+        <div className="event-section-top">
+          <h1>USAPL</h1>
+          <Search
+            searchTerm={searchTermUsapl}
+            handleSearch={handleSearchUsapl}
+          />
+        </div>
         <div className="custom-card-group">
-          {filteredEvents.map((meet, index) => {
-            return (
-              <TestCard
-                key={index}
-                eventName={meet}
-                location={"thing"}
-                pic={pic}
-              />
-            );
-          })}
+          {filteredUsaplEvents.map((event, index) => (
+            <TestCard
+              key={index}
+              eventName={event.name}
+              location={event.location}
+              pic={logo}
+              registrationLink={event.registrationLink}
+            />
+          ))}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

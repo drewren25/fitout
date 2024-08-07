@@ -4,9 +4,10 @@ interface eventData {
   eventName: string;
   location: string;
   pic: string;
+  registrationLink: string;
 }
 
-const TestCard: React.FC<eventData> = ({ eventName, location, pic }) => {
+const TestCard: React.FC<eventData> = ({ eventName, location, pic, registrationLink }) => {
   return (
     <div className="card">
       <img src={pic} className="card-img-top" />
@@ -20,7 +21,7 @@ const TestCard: React.FC<eventData> = ({ eventName, location, pic }) => {
           <a href="#" className="btn btn-outline-primary">
             Contact
           </a>
-          <a href="#" className="btn btn-primary">
+          <a href={registrationLink} className="btn btn-primary">
             Register
           </a>
         </div>
