@@ -22,8 +22,8 @@ function Nav() {
           <a className="nav-item nav-link" href="#/">
             Home
           </a>
-          <a className="nav-item nav-link" href="#/All_Meets">
-            All Meets
+          <a className="nav-item nav-link" href="mailto:fitout.main@gmail.com">
+            Contact
           </a>
           <a className="nav-item nav-link" href="#/About">
             About

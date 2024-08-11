@@ -33,7 +33,7 @@ app.get('/marathons', async (req, res) => {
 
     await browser.close();
 
-    console.log(events);
+    //console.log(events);
     res.json(events);
   } catch (error) {
     console.error(error);

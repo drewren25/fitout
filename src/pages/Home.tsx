@@ -74,7 +74,7 @@ function Home() {
   return (
     <>
       <Banner />
-      <div className="events">
+      <div className="events" id="All_Events">
         <div className="event-section-top">
           <h1>USAPL</h1>
           <Search

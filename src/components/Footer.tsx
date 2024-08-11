@@ -23,9 +23,6 @@ function Footer() {
           <a className="nav-item nav-link" href="mailto:fitout.main@gmail.com">
             Contact
           </a>
-          <a className="nav-item nav-link" href="#/How_it_works">
-            How it works
-          </a>
           <a className="nav-item nav-link" href="#/About">
             About
           </a>

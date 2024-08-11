@@ -4,7 +4,7 @@ import TestCard from "../components/TestCard";
 import Search from "../components/Search";
 
 import logo2 from "../assets/gettyimages-1143071628.webp";
-import pic from "../assets/CMT09563.jpg";
+import pic from "../assets/youre-a-runner.webp";
 
 interface Event {
   name: string;

@@ -16,7 +16,7 @@ function About() {
         <div className="narrow-body">
           <div className="about-section">
             <h1>The Story</h1>
-            <div className="content">
+            <div className="content boxed">
               <img src={pic1} alt="" />
               <p>
                 In March 2024, Fitout was imagined and pursued as a second
@@ -79,7 +79,7 @@ function About() {
           <div className="about-section">
             <h1>The Team</h1>
             <div className="Andrew">
-              <div className="member-description">
+              <div className="member-description boxed v">
                 <h1 className="name">Andrew Ren</h1>
                 <h2>Role</h2>
                 <p>Co-founder, Designer, Engineer, Matcha Consumer</p>
@@ -96,7 +96,7 @@ function About() {
             <div className="Karin">
               <img src={KarinPic1} alt="" className="team-photo" />
               <img src={KarinPic2} alt="" className="team-photo" />
-              <div className="member-description">
+              <div className="member-description boxed v">
                 <h1 className="name">Karin Aizawa</h1>
                 <h2>Role</h2>
                 <p>Co-founder, Project Manager, Senpai</p>
