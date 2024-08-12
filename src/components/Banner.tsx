@@ -18,10 +18,7 @@ function Banner() {
             </div>
             <h1 className="real-big fit-out-banner">Fit. Out.</h1>
           </div>
-          <h2 className="banner-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita,
-            ratione.
-          </h2>
+          <h2 className="banner-text">Find your next fitness event.</h2>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -35,9 +32,7 @@ function Banner() {
             </div>
             <h1 className="real-big fit-out-banner">Fit. Out.</h1>
           </div>
-          <h2 className="banner-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </h2>
+          <h2 className="banner-text">Show up, show out, as you.</h2>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
